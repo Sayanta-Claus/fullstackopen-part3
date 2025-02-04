@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui":"rm -rf dist && cd ../fullstackopen/part2/phonebook && npm run build && cp -r dist ../../../fullstackopen-part3",
     "deploy:full":"npm run build:ui && git add . && git commit -m uibuild && git push"
+    
   },
   "author": "Sayantan Biswas",
   "license": "ISC",

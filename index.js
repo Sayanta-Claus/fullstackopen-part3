@@ -84,7 +84,7 @@ app.post('/api/persons',(req,res)=>{
             });
              }
     const person= {
-        id:generateID(),
+        id:JSON.stringify(generateID()),
         name:body.name,
         number:body.number
     }
@@ -104,3 +104,10 @@ const PORT= process.env.PORT||3001
 app.listen(PORT,()=>{
     console.log(`Server is running at port ${PORT}`)
 })
+
+
+
+
+
+// "build:ui":"rm -rf dist && cd ../fullstackopen/part2/phonebook && npm run build && cp -r dist ../../../fullstackopen-part3",
+    // "deploy:full":"npm run build:ui && git add . && git commit -m uibuild && git push"
