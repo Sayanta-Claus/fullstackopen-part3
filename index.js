@@ -1,6 +1,7 @@
 const express = require('express')
 const app=express()
 const morgan=require('morgan')
+app.use(express.static('dist'))
 app.use(express.json())
 morgan.token('body', function(req, res) {
     return JSON.stringify(req.body);
@@ -99,7 +100,7 @@ app.get('/info',(req,res)=>{
 })
 
 
-
+const PORT= process.env.PORT||3001
 app.listen(3001,()=>{
-    console.log(`Server is running at port 3001`)
+    console.log(`Server is running at port ${PORT}`)
 })
