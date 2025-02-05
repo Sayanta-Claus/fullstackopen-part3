@@ -94,7 +94,7 @@ app.post('/api/persons',(req,res)=>{
     })
     person.save().then(newP=>{
         res.json(newP)
-    }).catch(err=>res.json(err.message))
+    }).catch(err=>res.send(err.message))
     
 })
 
