@@ -51,11 +51,17 @@ app.get('/api/persons',(req,res)=>{
         })
 })
 
-app.get('/api/persons/:id',(req,res)=>{
+app.get('/api/persons/:id',(req,res,next)=>{
     const id=req.params.id;
     Person.findById(id).then(person=>{
-        res.json(person)
-    })
+        if(person){
+            res.json(person)
+        }
+        else{
+            res.status(404).end()
+        }
+        
+    }).catch(err=>next(err))
 })
 
 app.delete('/api/persons/:id',(req,res,next)=>{
@@ -105,6 +111,14 @@ app.put('/api/persons/:id',(req,res,next)=>{
     }).catch(err=>next(err))
 })
 
+app.get('/info',(req,res)=>{
+   const date= new Date();
+    const string = `${daycodes[date.getDay()]} ${months[date.getMonth()]} ${date.getDate()} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} GMT${date.getTimezoneOffset()}`
+    Person.find({}).then(result=>{
+        res.send(`<p>Phonebook has info for ${result.length} people</p> <br/> <p>${string}</p>`)
+    })
+    
+})
 
 
 
@@ -123,11 +137,7 @@ app.use(errorHandler)
 
 
 
-// app.get('/info',(req,res)=>{
-//    const date= new Date();
-//     const string = `${daycodes[date.getDay()]} ${months[date.getMonth()]} ${date.getDate()} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} GMT${date.getTimezoneOffset()}`
-//     res.send(`<p>Phonebook has info for ${persons.length} people</p> <br/> <p>${string}</p>`)
-// })
+
 
 
 const PORT= process.env.PORT||3001
