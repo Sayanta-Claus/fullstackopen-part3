@@ -95,7 +95,7 @@ app.post('/api/persons',(req,res)=>{
     person.save().then(newP=>{
         res.json(newP)
     }).catch(err=>{return res.status(400).json({
-        error: 'Validation error'
+        error: err.message
     })})
     
 })
