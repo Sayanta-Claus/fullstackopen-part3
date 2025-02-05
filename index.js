@@ -6,10 +6,10 @@ const Person=require('./models/person')
 app.use(express.static('dist'))
 app.use(express.json())
 morgan.token('body', function(req, res) {
-    return JSON.stringify(req.body);
-    });
-    // we are using the host parameter
-    app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+  return JSON.stringify(req.body)
+})
+// we are using the host parameter
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 // let persons = [
 //     { 
