@@ -73,16 +73,16 @@ app.delete('/api/persons/:id',(req,res,next)=>{
 
 app.post('/api/persons',(req,res)=>{
     const body=req.body;
-    if(!body.name){
-        return res.status(400).json({
-            error:'name missing'
-        })
-    }
-    if(!body.number){
-        return res.status(400).json({
-            error:'number missing'
-        })
-    }
+    // if(!body.name){
+    //     return res.status(400).json({
+    //         error:'name missing'
+    //     })
+    // }
+    // if(!body.number){
+    //     return res.status(400).json({
+    //         error:'number missing'
+    //     })
+    // }
     // if (persons.find((p) => p.name === body.name)) {
     //         return res.status(400).json({
     //         error: 'Name must be unique'
@@ -94,7 +94,7 @@ app.post('/api/persons',(req,res)=>{
     })
     person.save().then(newP=>{
         res.json(newP)
-    })
+    }).catch(err=>res.json(err.message))
     
 })
 
